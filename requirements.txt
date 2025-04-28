@@ -5,3 +5,8 @@ plotly
 gunicorn
 werkzeug
 scikit-learn
+shap
+
+# Added packages for deployment and security
+python-dotenv
+bcrypt
