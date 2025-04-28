@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - ChurnShield Pro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: #f9fafb;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #2e3192;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #2e3192;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #fa6342;
+    }
+    .btn-start {
+      background-color: #fa6342;
+      color: white;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 8px 20px;
+      transition: background-color 0.3s ease;
+      border: none;
+      margin-left: 18px;
+      text-decoration: none;
+    }
+    .btn-start:hover {
+      background-color: #e55330;
+      color: white;
+    }
+    #contactus {
+      padding: 80px 15px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #contactus h2 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #2e3192;
+    }
+    #contactus .contact-section-subtitle {
+      color: #fa6342;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    .map-container {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(46, 49, 146, 0.08);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    form.contact-form {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(46, 49, 146, 0.08);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    form.contact-form label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    form.contact-form input,
+    form.contact-form textarea {
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      padding: 12px 18px;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    form.contact-form input:focus,
+    form.contact-form textarea:focus {
+      outline: none;
+      border-color: #fa6342;
+      box-shadow: 0 0 8px rgba(250, 99, 66, 0.3);
+    }
+    form.contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    form.contact-form button {
+      background-color: #2e3192;
+      color: white;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 12px 0;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form.contact-form button:hover {
+      background-color: #fa6342;
+    }
+    .contact-info-cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-info-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(46, 49, 146, 0.08);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      min-width: 280px;
+      font-size: 1.1rem;
+      color: #333;
+      transition: box-shadow 0.3s ease;
+    }
+    .contact-info-card:hover {
+      box-shadow: 0 10px 25px rgba(46, 49, 146, 0.15);
+    }
+    .contact-info-card i {
+      font-size: 1.8rem;
+      color: #fa6342;
+      min-width: 40px;
+      text-align: center;
+    }
+    .contact-info-text {
+      text-align: left;
+    }
+    .contact-info-text .title {
+      font-weight: 700;
+      color: #2e3192;
+      margin-bottom: 4px;
+    }
+    .contact-info-text .sub {
+      font-size: 0.98rem;
+      color: #888;
+    }
+    footer {
+      background: linear-gradient(120deg, #2e3192 0%, #1f2451 100%);
+      color: #eee;
+      padding: 40px 15px 30px;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 60px;
+      box-shadow: 0 -4px 15px rgba(46, 49, 146, 0.3);
+      border-radius: 18px 18px 0 0;
+    }
+    footer .footer-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fa6342;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    footer .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.13);
+      margin-top: 25px;
+      padding-top: 15px;
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+    footer .fa-heart { color: #e25555; }
+    @media (max-width: 768px) {
+      .contact-info-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-info-card {
+        min-width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ChurnShield Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+         <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/contactus">Contact Us</a></li>
+
+        </ul> 
+
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/aboutus">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contactus">Contact Us</a></li>
+          <li class="nav-item">
+            <a href="/customer" class="btn btn-start">Start</a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section id="contactus">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="contact-section-subtitle">CONTACT US</span>
+        <h2>Get In Touch With<br>Our Agents</h2>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.135686888769!2d-80.12560468497344!3d25.94203798357851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9acb7e0e7d2e1%3A0x6b2c2c1b4a7b0c1f!2sSunny%20Isles%20Beach%2C%20FL%2033160%2C%20USA!5e0!3m2!1sen!2sin!4v1682600000000!5m2!1sen!2sin"
+              width="100%" height="370" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form class="contact-form">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Your Name..." required />
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Your E-mail..." required />
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject..." required />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="contact-info-cards mt-5">
+        <div class="contact-info-card">
+          <i class="fa fa-phone"></i>
+          <div class="contact-info-text">
+            <div class="title">010-020-0340</div>
+            <div class="sub">Phone Number</div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <i class="fa fa-envelope"></i>
+          <div class="contact-info-text">
+            <div class="title">info@villa.co</div>
+            <div class="sub">Business Email</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">ChurnShield Pro</div>
+    <div>Advanced AI solution for predicting and preventing customer churn in banking and financial services.</div>
+    <div class="footer-bottom mt-4">
+      &copy; 2025 ChurnShield Pro. All rights reserved.<br />
+      Designed with <i class="fa fa-heart"></i> for banks
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Churn Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-900 to-indigo-800 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-gradient-to-br from-purple-800 to-purple-900 p-8 rounded-2xl shadow-2xl w-full max-w-6xl border border-purple-700">
+    <div class="mb-8 flex items-center space-x-4 text-white">
+      <svg class="h-10 w-10 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.732 6.879 1.992M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <div>
+        <h1 class="text-3xl font-bold">Customer Churn Prediction</h1>
+        <p class="text-sm text-gray-300">Predict customer behavior with machine learning</p>
+      </div>
+    </div>
+
+    <form action="/predict" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Customer Info Card -->
+      <div class="bg-purple-700 bg-opacity-40 p-6 rounded-xl border border-purple-500">
+        <h2 class="text-white text-xl font-semibold mb-4">Customer Information</h2>
+
+        <label class="block mb-4 text-white">
+          Credit Score *
+          <input type="number" name="CreditScore" required min="300" max="850" class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+          <small class="text-sm text-gray-300">Valid range: 300–850</small>
+        </label>
+
+        <label class="block mb-4 text-white">
+          Age *
+          <input type="number" name="Age" required min="18" max="100" class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+          <small class="text-sm text-gray-300">Valid range: 18–100</small>
+        </label>
+
+        <label class="block mb-4 text-white">
+          Geography *
+          <select name="Geography" required class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white">
+            <option value="France">France</option>
+            <option value="Spain">Spain</option>
+            <option value="Germany">Germany</option>
+          </select>
+        </label>
+
+        <label class="block mb-4 text-white">
+          Gender *
+          <select name="Gender" required class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Account Details Card -->
+      <div class="bg-purple-700 bg-opacity-40 p-6 rounded-xl border border-purple-500">
+        <h2 class="text-white text-xl font-semibold mb-4">Account Details</h2>
+
+        <label class="block mb-4 text-white">
+          Balance *
+          <input type="number" name="Balance" required min="0" max="1000000" class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white">
+          <small class="text-sm text-gray-300">Valid range: 0–1,000,000</small>
+        </label>
+
+        <label class="block mb-4 text-white">
+          Number of Products *
+          <input type="number" name="NumOfProducts" required min="1" max="4" class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white">
+          <small class="text-sm text-gray-300">Valid range: 1–4</small>
+        </label>
+
+        <!-- Checkboxes -->
+        <div class="flex flex-wrap gap-6 mt-4">
+          <label class="flex items-center space-x-2 text-white text-base cursor-pointer">
+            <input type="checkbox" name="HasCrCard" value="1" class="w-5 h-5 accent-blue-500 rounded focus:ring-2 focus:ring-offset-1 focus:ring-blue-400 transition" />
+            <span class="flex items-center gap-1">Has Credit Card</span>
+          </label>
+
+          <label class="flex items-center space-x-2 text-white text-base cursor-pointer">
+            <input type="checkbox" name="IsActiveMember" value="1" class="w-5 h-5 accent-green-500 rounded focus:ring-2 focus:ring-offset-1 focus:ring-green-400 transition" />
+            <span class="flex items-center gap-1">Active Member</span>
+          </label>
+        </div>
+
+        <label class="block mt-4 mb-4 text-white">
+          Estimated Salary *
+          <input type="number" name="EstimatedSalary" required min="0" step="0.01" class="w-full mt-1 p-2 rounded bg-purple-900 bg-opacity-30 border border-purple-400 text-white">
+        </label>
+
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl transition">
+          Predict Churn
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

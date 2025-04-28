@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Churn Prediction Result</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+        }
+        h1, h2 {
+            color: #90ee90;
+        }
+        .risk-high {
+            color: #ff4c4c;
+            font-weight: bold;
+        }
+        .risk-medium {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .risk-low {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            background: #222;
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .charts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .chart-container {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: #222;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+        a.btn-back {
+            margin-top: 1rem;
+            display: inline-block;
+            color: #90ee90;
+            text-decoration: none;
+            border: 1px solid #90ee90;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a.btn-back:hover {
+            background-color: #90ee90;
+            color: #121212;
+            text-decoration: none;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <!-- Existing charts containers -->
+  <div id="line-chart" class="chart-container"></div>
+  <div id="pie-chart" class="chart-container"></div>
+
+  <!-- Add new bar chart container below the others -->
+  <div id="bar-chart" class="chart-container"></div>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    const lineChartData = {{ line_chart_json | safe }};
+    const pieChartData = {{ pie_chart_json | safe }};
+    const barChartData = {{ bar_chart_json | safe }};
+
+    Plotly.newPlot('line-chart', lineChartData.data, lineChartData.layout, {responsive: true});
+    Plotly.newPlot('pie-chart', pieChartData.data, pieChartData.layout, {responsive: true});
+    Plotly.newPlot('bar-chart', barChartData.data, barChartData.layout, {responsive: true});
+
+    window.onresize = () => {
+      Plotly.Plots.resize(document.getElementById('line-chart'));
+      Plotly.Plots.resize(document.getElementById('pie-chart'));
+      Plotly.Plots.resize(document.getElementById('bar-chart'));
+    };
+  </script>
+</body>
+
+    <h1>Customer Churn Prediction Result</h1>
+    <p>Churn Probability: <strong>{{ churn_prob }}%</strong></p>
+    <p>Risk Level: 
+        {% if risk_level == 'High' %}
+            <span class="risk-high">{{ risk_level }}</span>
+        {% elif risk_level == 'Medium' %}
+            <span class="risk-medium">{{ risk_level }}</span>
+        {% else %}
+            <span class="risk-low">{{ risk_level }}</span>
+        {% endif %}
+    </p>
+
+
+
+
+
+
+
+
+    <h2>Top Contributing Features</h2>
+    <ul class="feature-list">
+    </ul>
+
+    <div class="result-message-container" style="display: flex; gap: 1rem; margin-top: 1rem;">
+      <div class="result-label" style="flex: 1; background-color: #222; padding: 1rem; border-radius: 5px; color: #90ee90; font-weight: bold; text-align: center;">
+        Result:
+      </div>
+      <div class="result-message" style="flex: 3; background-color: #333; padding: 1rem; border-radius: 5px; color: 
+        {% if risk_level == 'High' %}
+          #ff4c4c
+        {% elif risk_level == 'Medium' %}
+          #ffcc00
+        {% else %}
+          #4caf50
+        {% endif %}
+        ; font-weight: bold; text-align: center;">
+        {% if risk_level == 'High' %}
+          Customer will churn.
+        {% elif risk_level == 'Medium' %}
+          Customer may churn.
+        {% else %}
+          Customer will stay.
+        {% endif %}
+      </div>
+    </div>
+
+    <ul class="feature-list" style="margin-top: 2rem;">
+        {% for feature in top_features %}
+            {% if feature.feature != 'Tenure' %}
+                <li>
+                    <span>{{ feature.feature }}</span>
+                    <span>{{ "%.3f"|format(feature.contribution) }}</span>
+                </li>
+                {% if feature.feature == 'Geography' %}
+                <li>
+                    <span>Tenure</span>
+                    <span>Not Applicable</span>
+                </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+
+
+
+
+
+
+
+
+
+    <div class="charts">
+        <div class="chart-container" id="line-chart"></div>
+        <div class="chart-container" id="pie-chart"></div>
+    </div>
+
+    <a href="/" class="btn-back">Back to Input Form</a>
+
+    <div class="footer">
+        &copy; 2024 Your Company. All rights reserved.
+    </div>
+
+    <script>
+        var lineChartData = {{ line_chart_json | safe }};
+        var pieChartData = {{ pie_chart_json | safe }};
+
+        Plotly.newPlot('line-chart', lineChartData.data, lineChartData.layout, {responsive: true});
+        Plotly.newPlot('pie-chart', pieChartData.data, pieChartData.layout, {responsive: true});
+    </script>
+</body>
