@@ -4,3 +4,4 @@ pandas
 plotly
 gunicorn
 werkzeug
+scikit-learn
